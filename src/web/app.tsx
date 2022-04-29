@@ -1,24 +1,24 @@
-import React, { useState } from "react";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import ReactDOM from "react-dom/client";
-import rootReducer from "./reducers";
+import React, { useState } from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import ReactDOM from 'react-dom/client';
+import rootReducer from './reducers';
 
-import { useSelector, useDispatch } from "react-redux";
-import { HashRouter, Route, Routes, Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { HashRouter, Route, Routes, Link } from 'react-router-dom';
 
 // import "./App.css";
-import allActions from "./actions";
-import Header from "./components/Header";
-import Index from "./components/Index";
-import Item from "./components/Item";
+import allActions from './actions';
+import Header from './components/Header';
+import Index from './components/Index';
+import Item from './components/Item';
 
-import "./styles.css";
+import './styles.css';
 
 const store = createStore(rootReducer);
 
 const App = () => {
-  const [item, setItem] = useState<string>("");
+  const [item, setItem] = useState<string>('');
 
   const entryItem = useSelector((state: RootState) => state.entryItem);
   const dispatch = useDispatch();
@@ -37,45 +37,43 @@ const App = () => {
   };
 
   const nullItem = () => {
-    setItem(" ");
+    setItem(' ');
     console.log(item);
   };
 
   return (
     <HashRouter>
       <Header />
-      <div className="App">
-        <div className="Top">
-          <div className="TopContainer">
-            <div className="TopContainer__Left">
+      <div className='App'>
+        <div className='Top'>
+          <div className='TopContainer'>
+            <div className='TopContainer__Left'>
               {/* Reduxを使ったテスト */}
-              <div className="TopHead">
-                <div className="TopButton">
+              <div className='TopHead'>
+                <div className='TopButton'>
                   <input
-                    className="TopButton__name"
-                    type="text"
-                    id="name"
+                    className='TopButton__name'
+                    type='text'
+                    id='name'
                     onChange={itemName}
-                    value={!item ? "作成したい大会・部門名を入力" : item}
+                    value={!item ? '作成したい大会・部門名を入力' : item}
                     onBlur={defaultItem}
                     onClick={nullItem}
                   ></input>
                   <button
-                    onClick={() =>
-                      dispatch(allActions.entryAction.addItem(item))
-                    }
-                    className="TopButton__button"
+                    onClick={() => dispatch(allActions.entryAction.addItem(item))}
+                    className='TopButton__button'
                   >
                     Create
                   </button>
                 </div>
-                <div className="TopHead__title">＜Category-List＞</div>
+                <div className='TopHead__title'>＜Category-List＞</div>
               </div>
-              <ul className="TopList">
+              <ul className='TopList'>
                 {entryItem.itemList.map((item: string) => (
-                  <li key={item} className="TopList__item">
-                    <div className="TopList__itemName">
-                      <Link to={`./${item}`} className="TopList__itemName">
+                  <li key={item} className='TopList__item'>
+                    <div className='TopList__itemName'>
+                      <Link to={`./${item}`} className='TopList__itemName'>
                         <p>{item}</p>
                       </Link>
                     </div>
@@ -83,10 +81,10 @@ const App = () => {
                 ))}
               </ul>
             </div>
-            <div className="TopContainer__Right">
+            <div className='TopContainer__Right'>
               <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/:item" element={<Item />} />
+                <Route path='/' element={<Index />} />
+                <Route path='/:item' element={<Item />} />
               </Routes>
             </div>
           </div>
@@ -97,10 +95,10 @@ const App = () => {
   );
 };
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </Provider>
+  </Provider>,
 );

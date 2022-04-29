@@ -12,6 +12,7 @@
 /build
 /zenn-win32-x64
 /dist
+/2setMatch-win32-x64
 
 # misc
 .DS_Store

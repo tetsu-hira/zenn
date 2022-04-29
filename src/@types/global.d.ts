@@ -80,5 +80,5 @@ interface Obn {
   index: number;
 }
 
-declare module "*.png";
-declare module "*.svg";
+declare module '*.png';
+declare module '*.svg';
